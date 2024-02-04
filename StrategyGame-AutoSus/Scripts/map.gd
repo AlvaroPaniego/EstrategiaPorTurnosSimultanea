@@ -8,6 +8,7 @@ var offset
 
 #tile que se va a usar en el mapa
 var tile = preload("res://Scenes/tile.tscn")
+@onready var gameManager = $".."
 
 #nodo donde se añaden las tiles
 @onready var grid : Node = get_node(".")
@@ -16,7 +17,8 @@ var tile = preload("res://Scenes/tile.tscn")
 func _ready():
 	offset = tileSize/2
 	print(offset)
-	create_tile_grid(9, 20)
+	create_tile_grid(14, 33)
+	disable_tile_collision_for_unit()
 	
 	for i in allTiles:
 		if allTiles[i].startTile == true:
@@ -29,6 +31,19 @@ func get_tile_at_position(position):
 			return allTiles[x]
 	
 	return null
+
+func get_tile(position):
+	for x in allTiles:
+		#comprueba que la tile es valida para construir
+		if allTiles[x].position == position:
+			return allTiles[x]
+
+func disable_tile_collision_for_unit():
+	for x in allTiles:
+		#comprueba que la tile es valida para construir
+		if allTiles[x].hasUnit:
+			print(allTiles[x].position)
+			allTiles[x].toggle_collision(false)
 
 func disable_all_tile_highlights():
 	for x in allTiles:
@@ -58,9 +73,11 @@ func place_building(tile, texture):
 
 #rellenar el grid con las tiles y los nodos del A*
 func create_tile_grid(width, height):
-	print(offset)
-	var baseY : int = randi() % 10
-	var baseX : int = randi() % 21
+	var baseY : int = randi() % width
+	var baseX : int = randi() % height
+	
+	var unitY : int = randi() % width
+	var unitX : int = randi() % height
 	for y in range(width):
 		for x in range(height):
 			var pos : Vector2 = Vector2(((tileSize*x)+offset), ((tileSize*y)+offset))
@@ -70,6 +87,9 @@ func create_tile_grid(width, height):
 			newTile.y = y
 			if x == baseX and y == baseY:
 				newTile.startTile = true
+			if x == unitX and y == unitY:
+				gameManager.spawn_unit(pos, x, y)
+				newTile.hasUnit = true
 			grid.add_child(newTile)
 			
 			allTiles[Vector2(x,y)] = newTile

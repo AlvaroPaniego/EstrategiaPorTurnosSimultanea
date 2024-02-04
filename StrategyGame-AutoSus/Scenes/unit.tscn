@@ -1,24 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1n3vktm5c6ey"]
 
+[ext_resource type="Script" path="res://Scripts/unit.gd" id="1_h7s8k"]
 [ext_resource type="Texture2D" uid="uid://cysbcr7gw4f5p" path="res://Sprites/Units/Green/infantry.png" id="1_wvvye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymvlp"]
 size = Vector2(16, 16)
 
-[sub_resource type="Curve2D" id="Curve2D_qaqm0"]
-
 [node name="Unit" type="Area2D"]
 z_index = 1
+script = ExtResource("1_h7s8k")
+speed = 20
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wvvye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ymvlp")
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_qaqm0")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -23,9 +23,16 @@ var buildingType : int
 
 var placingPath : bool = false
 
+#cosas de las unidades
+var unitList : Array
+
+#moviendo unidad
+var currentlyMoving : bool = false
+
 #componentes
 @onready var ui : Node = get_node("Camera2D/UI")
-@onready var map : Node = $Map
+@onready var map : Node2D= get_node("Map")
+var unit = preload("res://Scenes/unit.tscn")
 
 func _ready():
 	ui.update_resource_text()
@@ -72,10 +79,25 @@ func place_building(tileToPlaceOn):
 	map.place_building(tileToPlaceOn, texture)
 	ui.update_resource_text()
 
+func spawn_unit(pos, x, y):
+	map = get_node("Map")
+	print(unit == null)
+	var newUnit = unit.instantiate()
+	newUnit.position = pos
+	newUnit.x = x
+	newUnit.y = y
+	unitList.append(newUnit)
+	print(newUnit == null)
+	print(map == null)
+	map.add_child(newUnit)
+
 func end_turn(): 
 	curFood += foodPerTurn
 	curEnergy += energyPerTurn
 	curMetal += metalPerTurn
 	curOxygen += oxygenPerTurn
+	
+	for units in unitList:
+		units.set_path()
 	
 	turn += 1

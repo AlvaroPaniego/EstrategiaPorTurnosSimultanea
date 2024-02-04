@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp2mhbfh3tp1"]
+[gd_scene load_steps=5 format=3 uid="uid://dp2mhbfh3tp1"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_oll8s"]
 [ext_resource type="Script" path="res://Scripts/map.gd" id="1_wx3y7"]
 [ext_resource type="PackedScene" uid="uid://b3d6furjp7vou" path="res://Scenes/ui.tscn" id="2_eixfn"]
 [ext_resource type="PackedScene" uid="uid://cinje36lmwvi6" path="res://Scenes/map.tscn" id="5_7df5i"]
-[ext_resource type="PackedScene" uid="uid://b1n3vktm5c6ey" path="res://Scenes/unit.tscn" id="5_foqyt"]
 
 [node name="MainNode" type="Node2D"]
 script = ExtResource("1_oll8s")
@@ -17,6 +16,3 @@ anchor_mode = 0
 [node name="Map" parent="." instance=ExtResource("5_7df5i")]
 script = ExtResource("1_wx3y7")
 tileSize = 16.0
-
-[node name="Unit" parent="." instance=ExtResource("5_foqyt")]
-position = Vector2(72, 120)
