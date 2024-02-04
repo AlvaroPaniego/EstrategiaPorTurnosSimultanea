@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://buponrotuv131"]
+
+[ext_resource type="Script" path="res://Scripts/map.gd" id="1_qek7y"]
+[ext_resource type="Script" path="res://Scripts/pathfiding_manager.gd" id="2_jja5g"]
+
+[node name="Tiles" type="Node"]
+script = ExtResource("1_qek7y")
+
+[node name="Pathfinding" type="Node" parent="."]
+script = ExtResource("2_jja5g")

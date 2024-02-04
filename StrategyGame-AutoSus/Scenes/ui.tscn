@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3d6furjp7vou"]
+
+[ext_resource type="FontVariation" uid="uid://cg4eqy0wbsso1" path="res://Font/Roboto-Bold.tres" id="1_q6yv6"]
+[ext_resource type="FontFile" uid="uid://cf2e25mnj1ui2" path="res://Font/Roboto-Bold.ttf" id="2_ct5yw"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="2_gg6uh"]
+[ext_resource type="FontFile" uid="uid://c5xcxjxuqam36" path="res://Font/Roboto-Regular.ttf" id="3_n2he6"]
+[ext_resource type="Texture2D" uid="uid://d54cfh71ctun" path="res://Sprites/Buildings/Buildings_kenny/Red/mine.png" id="5_i1emc"]
+[ext_resource type="Texture2D" uid="uid://by06ks4ta3qve" path="res://Sprites/Buildings/Buildings_kenny/Red/farm.png" id="6_ctpne"]
+[ext_resource type="Texture2D" uid="uid://r5jc4v1gabk1" path="res://Sprites/Buildings/Buildings_kenny/Red/energy_factory.png" id="7_h34tc"]
+
+[sub_resource type="Theme" id="Theme_5w2ox"]
+default_font = ExtResource("1_q6yv6")
+default_font_size = 35
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 224.0
+offset_bottom = 224.0
+theme = SubResource("Theme_5w2ox")
+script = ExtResource("2_gg6uh")
+
+[node name="BackGround" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 528.0
+offset_bottom = 64.0
+color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="EndTunrnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 16.0
+offset_right = 512.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_ct5yw")
+theme_override_font_sizes/font_size = 20
+text = "End Turn"
+
+[node name="TurnLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 24.0
+offset_right = 403.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("3_n2he6")
+theme_override_font_sizes/font_size = 15
+text = "Turn 69"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulidingButtons" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 88.0
+offset_bottom = 48.0
+alignment = 1
+
+[node name="MineButton" type="Button" parent="BulidingButtons"]
+layout_mode = 2
+icon = ExtResource("5_i1emc")
+
+[node name="GreenHouseButton" type="Button" parent="BulidingButtons"]
+layout_mode = 2
+icon = ExtResource("6_ctpne")
+
+[node name="SolarPanelButton" type="Button" parent="BulidingButtons"]
+layout_mode = 2
+icon = ExtResource("7_h34tc")
+
+[node name="HeaderFood-Metal" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 138.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("3_n2he6")
+theme_override_font_sizes/font_size = 15
+text = "Food:
+Metal:"
+horizontal_alignment = 2
+
+[node name="Food-MetalText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 16.0
+offset_right = 201.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0.831373, 0, 1)
+theme_override_fonts/font = ExtResource("3_n2he6")
+theme_override_font_sizes/font_size = 15
+text = "420 (+69)
+777 (+11)"
+horizontal_alignment = 2
+
+[node name="HeaderOxygen-Energy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 254.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("3_n2he6")
+theme_override_font_sizes/font_size = 15
+text = "Oxygen:
+Energy:"
+horizontal_alignment = 2
+
+[node name="Oxygen-EnergyText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 16.0
+offset_right = 321.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0.831373, 0, 1)
+theme_override_fonts/font = ExtResource("3_n2he6")
+theme_override_font_sizes/font_size = 15
+text = "420 (+69)
+777 (+11)"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="EndTunrnButton" to="." method="_on_end_tunrn_button_pressed"]
+[connection signal="pressed" from="BulidingButtons/MineButton" to="." method="_on_mine_button_pressed"]
+[connection signal="pressed" from="BulidingButtons/GreenHouseButton" to="." method="_on_green_house_button_pressed"]
+[connection signal="pressed" from="BulidingButtons/SolarPanelButton" to="." method="_on_solar_panel_button_pressed"]
