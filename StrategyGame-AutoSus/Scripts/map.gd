@@ -9,6 +9,7 @@ var offset
 #tile que se va a usar en el mapa
 var tile = preload("res://Scenes/tile.tscn")
 @onready var gameManager = $".."
+@onready var unitManager: Node = $"../UnitManager"
 
 #nodo donde se añaden las tiles
 @onready var grid : Node = get_node(".")
@@ -16,7 +17,6 @@ var tile = preload("res://Scenes/tile.tscn")
 #Se ejecuta cuando se inicializa el nodo
 func _ready():
 	offset = tileSize/2
-	print(offset)
 	create_tile_grid(14, 33)
 	disable_tile_collision_for_unit()
 	
@@ -33,12 +33,9 @@ func get_tile_at_position(position):
 	return null
 
 func get_tile(position):
-#	position = position.floor()
-#	print(position)
 	for x in allTiles:
 		#comprueba que la tile es valida para construir
 		if allTiles[x].position == position:
-			print("devolviendo: " +str(allTiles[x]))
 			return allTiles[x]
 
 func disable_tile_collision_for_unit():
@@ -92,8 +89,6 @@ func create_tile_grid(width, height):
 	var unitY : int = randi() % width
 	var unitX : int = randi() % height
 	
-	var enemyUnitY : int = randi() % width
-	var enemyUnitX : int = randi() % height
 	for y in range(width):
 		for x in range(height):
 			var pos : Vector2 = Vector2(((tileSize*x)+offset), ((tileSize*y)+offset))
@@ -103,14 +98,14 @@ func create_tile_grid(width, height):
 			newTile.y = y
 			if x == baseX and y == baseY:
 				newTile.startTile = true
-			if x == unitX and y == unitY:
-				gameManager.spawn_unit(pos, x, y, false)
+			if x == unitX and y == unitY and unitManager.unitList.size() < 5:
+				unitManager.spawn_unit(pos, x, y, false)
 				newTile.hasUnit = true
-			if x == enemyUnitX and y == enemyUnitY:
-				gameManager.spawn_unit(pos, x, y, true)
-				newTile.hasUnit = true
+				unitX = randi_range(x, height)
+				unitY = randi_range(y, width)
 			grid.add_child(newTile)
 			
 			allTiles[Vector2(x,y)] = newTile
+	print(unitManager.unitList.size())
 
 

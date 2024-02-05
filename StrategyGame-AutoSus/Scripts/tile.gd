@@ -14,6 +14,7 @@ var y : int = 0
 @onready var highlight : Sprite2D  = get_node("Highlight");
 @onready var buildingIcon : Sprite2D  = get_node("BuildingIcon");
 @onready var collision : CollisionShape2D = get_node("CollisionShape2D")
+@onready var unitManager : Node = get_node("/root/MainNode/UnitManager")
 
 func toggle_highlight(toggle): 
 		highlight.visible = toggle;
@@ -41,4 +42,4 @@ func _on_input_event(viewport, event, shape_idx):
 			print("estas colocando el final")
 			gameManager.placingPath = false
 			gameManager.map.disable_all_tile_highlights()
-			pathManager.set_idEnd(Vector2i(x, y))
+			unitManager.set_end_of_path(x, y)
