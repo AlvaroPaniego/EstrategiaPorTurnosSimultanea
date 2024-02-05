@@ -79,16 +79,16 @@ func place_building(tileToPlaceOn):
 	map.place_building(tileToPlaceOn, texture)
 	ui.update_resource_text()
 
-func spawn_unit(pos, x, y):
+func spawn_unit(pos, x, y, isEnemy):
 	map = get_node("Map")
-	print(unit == null)
 	var newUnit = unit.instantiate()
+	if isEnemy:
+		newUnit.unitIcon.texture = preload("res://Sprites/Units/Blue/infatry.png")
 	newUnit.position = pos
 	newUnit.x = x
 	newUnit.y = y
+	newUnit.isEnemy = isEnemy
 	unitList.append(newUnit)
-	print(newUnit == null)
-	print(map == null)
 	map.add_child(newUnit)
 
 func end_turn(): 
@@ -99,5 +99,7 @@ func end_turn():
 	
 	for units in unitList:
 		units.set_path()
+	
+	map.disable_tile_collision_for_unit()
 	
 	turn += 1

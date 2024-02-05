@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ij28aeqfe68"
-path="res://.godot/imported/armored_truck.png-57d3d62a19eee99c4169736f68359874.ctex"
+path="res://.godot/imported/arrmored_truck.png-82555159bc74c35189022e02739655fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Units/Yellow/armored_truck.png"
-dest_files=["res://.godot/imported/armored_truck.png-57d3d62a19eee99c4169736f68359874.ctex"]
+source_file="res://Sprites/Units/Yellow/arrmored_truck.png"
+dest_files=["res://.godot/imported/arrmored_truck.png-82555159bc74c35189022e02739655fe.ctex"]
 
 [params]
 

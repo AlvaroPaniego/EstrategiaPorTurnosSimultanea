@@ -2,7 +2,7 @@ extends Node
 
 var astar_grid : = AStarGrid2D.new()
 @onready var tileMap = $"../TileMap"
-var line := Line2D.new()
+@onready var line := $"../Line2D"
 
 var idStart: Vector2i
 var idEnd: Vector2i
@@ -43,8 +43,6 @@ func create_AGrid():
 func create_line():
 	line.z_index = 1
 	line.width = 2.5
-	line.default_color = Color.BLUE_VIOLET
-	tileMap.add_child(line)
 
 func get_final_path(): 
 	var positionList : Array[Vector2]

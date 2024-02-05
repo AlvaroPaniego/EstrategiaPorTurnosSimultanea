@@ -1,5 +1,6 @@
 extends Area2D
-var hasMoved : bool = false;
+var hasMoved : bool = false
+var isEnemy : bool = false
 var x : int = 0
 var y : int = 0
 @onready var map : Node = get_node("/root/MainNode/Map")
@@ -9,23 +10,22 @@ var y : int = 0
 var path : Array[Vector2]
 @export var speed : = 10
 var current_point_index = 0
+var finalPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 1
-	#pathManager.path_chosen.connect(set_path)
-
-func _input(event: InputEvent) -> void:
-	if !event.is_action_pressed("ui_accept"):
-		return
-	position = Vector2(16, 16)
 
 func set_path():
+	path = pathManager.get_final_path()
+	if path == null:
+		return
 	var pos = pathManager.idEnd
-	for i in pathManager.get_final_path():
-		path.append(i)
+	map.get_tile(position).hasUnit = false
 	x = pos.x
 	y = pos.y
+	finalPos = path[path.size()-1]
+	map.get_tile(path[path.size()-1]).hasUnit = true
 
 func _process(delta: float) -> void:
 	if path.is_empty():
@@ -40,6 +40,8 @@ func move(delta):
 			path.clear()
 	if !path.is_empty():
 		position = position.lerp(path[current_point_index], speed * delta)
+	if path.size() == 0:
+		position = finalPos
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -47,5 +49,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		
 		print("Has pinchao en una unidad")
 		if !gameManager.currentlyBuiding and !hasMoved:
+			map.show_movement_range(Vector2(x, y), 5)
 			print("seleccionada para mover")
 			pathManager.set_idStart(Vector2i(x, y))

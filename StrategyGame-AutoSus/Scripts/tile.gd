@@ -23,11 +23,11 @@ func place_building(buildingTexture):
 	hasBuilding = true;
 	buildingIcon.texture = buildingTexture;
 
-func spawn_unit():
-	hasUnit = true
+func set_color(color):
+	highlight.modulate = color
 
 func toggle_collision(toggle):
-	collision.visible = false
+	collision.visible = toggle
 
 #eventos
 func _on_input_event(viewport, event, shape_idx):
@@ -40,4 +40,5 @@ func _on_input_event(viewport, event, shape_idx):
 		if !hasBuilding and !hasUnit:
 			print("estas colocando el final")
 			gameManager.placingPath = false
+			gameManager.map.disable_all_tile_highlights()
 			pathManager.set_idEnd(Vector2i(x, y))

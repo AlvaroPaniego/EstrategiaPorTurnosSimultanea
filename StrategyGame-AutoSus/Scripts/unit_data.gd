@@ -1,13 +1,15 @@
 extends Node
-var base : Building = Building.new(0, preload("res://Sprites/Buildings/Buildings_kenny/Red/hq.png"), Resources.Type.NOTHING, 0, Resources.Type.NOTHING, 0)
-var mine : Building = Building.new(1, preload("res://Sprites/Buildings/Buildings_kenny/Red/mine.png"), Resources.Type.METAL, 1, Resources.Type.ENERGY, -1)
-var greenhouse : Building = Building.new(2, preload("res://Sprites/Buildings/Buildings_kenny/Red/farm.png"), Resources.Type.FOOD, 1, Resources.Type.NOTHING, 0)
-var solarPanel : Building = Building.new(3, preload("res://Sprites/Buildings/Buildings_kenny/Red/energy_factory.png"), Resources.Type.ENERGY, 1, Resources.Type.NOTHING, 0)
 
-class Building:
+#var blueInfantry = Unit.new()
+
+class Unit:
 	enum Resources {NOTHING, METAL, ENERGY, FOOD}
+	enum UnitType {INFANTRY, ARMORED_TRANSPORT, CHOPPER, FIGHTER, LOGI_TRUCK, MISSILE_TRUCK,
+					ROCKET_INFANTRY, SUBMARINE, TANK, TRANSPORT_BOAT, TRANSPORT_CHOPPER,
+					TRANSPORT_TRUCK, WARSHIP
+				}
 	#tipo de edidficio
-	var type : int
+	var type : UnitType
 	
 	#textura del edificio
 	var iconTexture : Texture

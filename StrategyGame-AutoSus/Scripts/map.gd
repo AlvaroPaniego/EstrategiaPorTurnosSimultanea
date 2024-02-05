@@ -33,20 +33,25 @@ func get_tile_at_position(position):
 	return null
 
 func get_tile(position):
+#	position = position.floor()
+#	print(position)
 	for x in allTiles:
 		#comprueba que la tile es valida para construir
 		if allTiles[x].position == position:
+			print("devolviendo: " +str(allTiles[x]))
 			return allTiles[x]
 
 func disable_tile_collision_for_unit():
 	for x in allTiles:
 		#comprueba que la tile es valida para construir
 		if allTiles[x].hasUnit:
-			print(allTiles[x].position)
 			allTiles[x].toggle_collision(false)
+		else:
+			allTiles[x].toggle_collision(true)
 
 func disable_all_tile_highlights():
 	for x in allTiles:
+		allTiles[x].set_color(Color.WHITE)
 		allTiles[x].toggle_highlight(false)
 
 func highlight_available_tiles():
@@ -65,6 +70,14 @@ func highlight_available_tiles():
 		if rightTile != null:
 			rightTile.toggle_highlight(true)
 
+func show_movement_range(positionId, range):
+	for x in allTiles:
+		var canShowRange = abs(positionId.x - allTiles[x].x) >= range or abs(positionId.y - allTiles[x].y) >= range
+		var selectedTile = get_tile(allTiles[x].position)
+		if allTiles[x].hasBuilding:
+			allTiles[x].set_color(Color.RED)
+		selectedTile.toggle_highlight(!canShowRange)
+
 #pa colocar edifcios
 func place_building(tile, texture):
 	tilesWithBuildings.append(tile)
@@ -78,6 +91,9 @@ func create_tile_grid(width, height):
 	
 	var unitY : int = randi() % width
 	var unitX : int = randi() % height
+	
+	var enemyUnitY : int = randi() % width
+	var enemyUnitX : int = randi() % height
 	for y in range(width):
 		for x in range(height):
 			var pos : Vector2 = Vector2(((tileSize*x)+offset), ((tileSize*y)+offset))
@@ -88,7 +104,10 @@ func create_tile_grid(width, height):
 			if x == baseX and y == baseY:
 				newTile.startTile = true
 			if x == unitX and y == unitY:
-				gameManager.spawn_unit(pos, x, y)
+				gameManager.spawn_unit(pos, x, y, false)
+				newTile.hasUnit = true
+			if x == enemyUnitX and y == enemyUnitY:
+				gameManager.spawn_unit(pos, x, y, true)
 				newTile.hasUnit = true
 			grid.add_child(newTile)
 			
