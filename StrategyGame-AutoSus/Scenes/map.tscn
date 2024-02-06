@@ -9,6 +9,7 @@ atlas = ExtResource("3_668lg")
 region = Rect2(289, 170, 16, 16)
 
 [node name="Map" type="Node2D"]
+z_index = -1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_5asy4")

@@ -15,14 +15,18 @@ var i = 0
 func spawn_unit(pos, x, y, isEnemy):
 	map = $"../Map"
 	var newUnit = unit.instantiate()
-	#if isEnemy:
-	#	newUnit.unitIcon.texture = preload("res://Sprites/Units/Blue/infatry.png")
+	map.add_child(newUnit)
+	if isEnemy:
+		print(newUnit.unitIcon)
+		newUnit.set_texture(UnitData.blueInfantry.iconTexture)
+	else:
+		print(newUnit.unitIcon)
+		newUnit.set_texture(UnitData.greenInfantry.iconTexture)
 	newUnit.position = pos
 	newUnit.x = x
 	newUnit.y = y
 	newUnit.isEnemy = isEnemy
 	unitList.append(newUnit)
-	map.add_child(newUnit)
 
 func set_path():
 	var path = pathManager.get_final_path()
@@ -47,7 +51,8 @@ func set_end_of_path(x, y):
 
 func end_turn():
 	for units in unitList:
-		print(str(units) + str(units.path))
+		print(str(units) + " camino unidad: " + str(units.path) + " camino flecha: " + str(units.path))
+		
 		if !units.path.is_empty():
 			units.canMove = true
 	

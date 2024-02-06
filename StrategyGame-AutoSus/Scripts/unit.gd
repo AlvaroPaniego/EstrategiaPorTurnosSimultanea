@@ -4,8 +4,8 @@ var canMove : bool = false
 var x : int = 0
 var y : int = 0
 @onready var map : Node = get_node("/root/MainNode/Map")
-@onready var unitIcon: Sprite2D = $Sprite2D
-@onready var arrow: Node2D = $Arrow
+@onready var unitIcon: Sprite2D = get_node("Sprite2D")
+@onready var arrow: Node2D = get_node("Arrow")
 
 var path : Array[Vector2]
 @export var speed : = 10
@@ -15,7 +15,7 @@ var finalPos
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 1
-	arrow.z_index = 1
+	arrow.z_index = 0
 
 func _process(delta: float) -> void:
 	if path.is_empty() and !canMove:
@@ -26,6 +26,8 @@ func move(delta):
 	if !canMove: 
 		return
 	print("moviendose")
+	if !arrow.spriteArrow.is_empty():
+		arrow.delete_arrow()
 	if position.distance_to(path[current_point_index]) < speed * delta:
 		current_point_index += 1
 		if current_point_index >= path.size():
@@ -36,13 +38,15 @@ func move(delta):
 	if path.size() == 0:
 		position = finalPos
 		canMove = false
-		arrow.delete_arrow()
 
 func set_path(pathToFollow):
 	path = pathToFollow
-	#arrow.arrowPath = pathToFollow
-	#arrow.paint_arrow()
-	print(str(arrow.arrowPath) + " + " + str(path))
+	#arrow.set_arrowPath(pathToFollow)
+	arrow.paint_arrow(pathToFollow)
+	#print(str(arrow.arrowPath) + " + " + str(path))
+
+func set_texture(texture):
+	unitIcon.set_texture(texture)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:

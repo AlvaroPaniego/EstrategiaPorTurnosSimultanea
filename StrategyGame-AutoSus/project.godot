@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BuildingData="*res://Scripts/building_data.gd"
+UnitData="*res://Scripts/unit_data.gd"
 
 [display]
 

@@ -41,17 +41,17 @@ func on_select_building(buildingType):
 	
 	map.highlight_available_tiles()
 
-func add_resource_per_turn(resource : Resources.Type, amount):
+func add_resource_per_turn(resource : Enums.Type, amount):
 	match resource:
-		Resources.Type.NOTHING:
+		Enums.Type.NOTHING:
 			return
-		Resources.Type.FOOD:
+		Enums.Type.FOOD:
 			foodPerTurn += amount
-		Resources.Type.METAL:
+		Enums.Type.METAL:
 			metalPerTurn += amount
-		Resources.Type.OXYGEN:
+		Enums.Type.OXYGEN:
 			oxygenPerTurn += amount
-		Resources.Type.ENERGY:
+		Enums.Type.ENERGY:
 			energyPerTurn += amount
 
 func place_building(tileToPlaceOn):

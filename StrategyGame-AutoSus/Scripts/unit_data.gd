@@ -1,25 +1,24 @@
 extends Node
 
-#var blueInfantry = Unit.new()
+var blueInfantry = Unit.new(Enums.UnitType.INFANTRY, preload("res://Sprites/Units/Blue/infantry.png"), Enums.Type.NOTHING, 0, Enums.Type.FOOD, 1)
+var yellowInfantry = Unit.new(Enums.UnitType.INFANTRY, preload("res://Sprites/Units/Yellow/infantry.png"), Enums.Type.NOTHING, 0, Enums.Type.FOOD, 1)
+var redInfantry = Unit.new(Enums.UnitType.INFANTRY, preload("res://Sprites/Units/Red/infantry.png"), Enums.Type.NOTHING, 0, Enums.Type.FOOD, 1)
+var greenInfantry = Unit.new(Enums.UnitType.INFANTRY, preload("res://Sprites/Units/Green/infantry.png"), Enums.Type.NOTHING, 0, Enums.Type.FOOD, 1)
 
 class Unit:
 	enum Resources {NOTHING, METAL, ENERGY, FOOD}
-	enum UnitType {INFANTRY, ARMORED_TRANSPORT, CHOPPER, FIGHTER, LOGI_TRUCK, MISSILE_TRUCK,
-					ROCKET_INFANTRY, SUBMARINE, TANK, TRANSPORT_BOAT, TRANSPORT_CHOPPER,
-					TRANSPORT_TRUCK, WARSHIP
-				}
 	#tipo de edidficio
-	var type : UnitType
+	var type : Enums.UnitType
 	
 	#textura del edificio
 	var iconTexture : Texture
 	
 	#produccion del edificio
-	var prodResourceType : Resources.Type
+	var prodResourceType : Enums.Type
 	var prodResourceAmount : int
 	
 	#mantebiniento del edificio
-	var upkeepResourceType : Resources.Type
+	var upkeepResourceType : Enums.Type
 	var upkeepResourceAmount : int
 	
 	#constructor
