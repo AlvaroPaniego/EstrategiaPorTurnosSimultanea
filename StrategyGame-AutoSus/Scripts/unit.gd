@@ -41,6 +41,7 @@ func move(delta):
 
 func set_path(pathToFollow):
 	path = pathToFollow
+	print(pathToFollow)
 	#arrow.set_arrowPath(pathToFollow)
 	arrow.paint_arrow(pathToFollow)
 	#print(str(arrow.arrowPath) + " + " + str(path))

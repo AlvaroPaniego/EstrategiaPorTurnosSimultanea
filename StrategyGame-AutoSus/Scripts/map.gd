@@ -100,7 +100,7 @@ func create_tile_grid(width, height):
 			newTile.y = y
 			if x == baseX and y == baseY:
 				newTile.startTile = true
-			if x == unitX and y == unitY and unitManager.unitList.size() < 5:
+			if x == 6 and y == 6 and unitManager.unitList.size() < 5:
 				unitManager.spawn_unit(pos, x, y, isEnemy)
 				newTile.hasUnit = true
 				unitX = randi_range(x, height)

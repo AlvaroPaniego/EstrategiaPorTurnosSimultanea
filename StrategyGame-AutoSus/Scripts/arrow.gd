@@ -32,8 +32,8 @@ func delete_arrow():
 	spriteArrow.clear()
 
 func paint_arrow(arrowPath):
-	print(arrow)
-	#print(arrowPath)
+	#print(arrow)
+	print(arrowPath)
 	#print(arrowPath.size())
 	var newSprite
 	print(arrowPath.size())
@@ -110,7 +110,7 @@ func choose_direction(prevPos, pos, nextPos, newSprite):
 			if pos.x - prevPos.x <= 0:
 				newSprite.texture = down_to_right 
 			else:
-				newSprite.texture = down_to_left 
+				newSprite.texture = down_to_left
 		else:
 			if pos.x - prevPos.x <= 0:
 				newSprite.texture = up_to_right
@@ -123,13 +123,13 @@ func choose_direction(prevPos, pos, nextPos, newSprite):
 		if nextPos.x - pos.x > 0:
 			#print(str(pos.y - prevPos.y))
 			if pos.y - prevPos.y <= 0:
-				newSprite.texture = up_to_left 
+				newSprite.texture = down_to_right
 			else:
 				newSprite.texture = up_to_right
 		else:
 			if pos.y - prevPos.y <= 0:
-				newSprite.texture = down_to_right
-			else:
 				newSprite.texture = down_to_left
+			else:
+				newSprite.texture = up_to_left
 	else:
 		print("Faltan condiciones")
