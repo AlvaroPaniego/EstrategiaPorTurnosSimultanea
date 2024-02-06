@@ -29,16 +29,20 @@ func delete_arrow():
 	#arrowPath.clear()
 	for sprite in spriteArrow:
 		sprite.texture = null
+	arrow.position = Vector2.ZERO
 	spriteArrow.clear()
 
 func paint_arrow(arrowPath):
+	arrow.position = Vector2(arrow.position.x - arrowPath[0].x, (arrow.position.y - arrowPath[0].y))
 	#print(arrow)
-	print(arrowPath)
+	#print(arrowPath)
 	#print(arrowPath.size())
 	var newSprite
 	print(arrowPath.size())
 	for pos in range(arrowPath.size()-1):
 		#print(pos)
+		#if pos == 0:
+		#	continue
 		newSprite = Sprite2D.new()
 		if pos == 0:
 			choose_starting_direction(arrowPath[pos], arrowPath[pos+1], newSprite)
@@ -54,7 +58,7 @@ func paint_arrow(arrowPath):
 	#print(str(newSprite.texture) + " " + str(newSprite.position))
 	spriteArrow.append(newSprite)
 	arrow.add_child(newSprite)
-	print(arrow.get_children())
+	#print(arrow.get_children())
 
 func choose_starting_direction(pos, nextPos, newSprite):
 	var horizontalMove = abs(nextPos.x - pos.x) != 0

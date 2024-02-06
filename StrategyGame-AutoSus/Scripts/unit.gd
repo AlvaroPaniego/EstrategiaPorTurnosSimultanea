@@ -15,7 +15,7 @@ var finalPos
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 1
-	arrow.z_index = 0
+	unitIcon.z_index = arrow.z_index +1
 
 func _process(delta: float) -> void:
 	if path.is_empty() and !canMove:

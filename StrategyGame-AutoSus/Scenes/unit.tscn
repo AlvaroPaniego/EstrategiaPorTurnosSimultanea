@@ -12,13 +12,13 @@ z_index = 1
 script = ExtResource("1_h7s8k")
 speed = 20
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wvvye")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ymvlp")
 
 [node name="Arrow" parent="." instance=ExtResource("3_ttb1n")]
 position = Vector2(1.58083, 16.2715)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wvvye")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
