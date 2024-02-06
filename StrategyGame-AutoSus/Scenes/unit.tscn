@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1n3vktm5c6ey"]
+[gd_scene load_steps=5 format=3 uid="uid://b1n3vktm5c6ey"]
 
 [ext_resource type="Script" path="res://Scripts/unit.gd" id="1_h7s8k"]
 [ext_resource type="Texture2D" uid="uid://cysbcr7gw4f5p" path="res://Sprites/Units/Green/infantry.png" id="1_wvvye"]
+[ext_resource type="PackedScene" uid="uid://cn8dmq0oduj1a" path="res://Scenes/arrow.tscn" id="3_ttb1n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymvlp"]
 size = Vector2(16, 16)
@@ -16,5 +17,8 @@ texture = ExtResource("1_wvvye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ymvlp")
+
+[node name="Arrow" parent="." instance=ExtResource("3_ttb1n")]
+position = Vector2(1.58083, 16.2715)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

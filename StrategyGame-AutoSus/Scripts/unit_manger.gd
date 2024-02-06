@@ -3,6 +3,7 @@ extends Node
 @onready var pathManager : Node = get_node("/root/MainNode/Map/Patfinding")
 @onready var map: Node2D = $"../Map"
 
+
 var unit = preload("res://Scenes/unit.tscn")
 
 #cosas de las unidades
@@ -24,7 +25,8 @@ func spawn_unit(pos, x, y, isEnemy):
 	map.add_child(newUnit)
 
 func set_path():
-	selectedUnit.path = pathManager.get_final_path()
+	var path = pathManager.get_final_path()
+	selectedUnit.set_path(path)
 	if selectedUnit.path == null:
 		return
 	print("poniendo camino para : " + str(selectedUnit))

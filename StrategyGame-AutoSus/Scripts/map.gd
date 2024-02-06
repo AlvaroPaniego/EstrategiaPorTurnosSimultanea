@@ -106,6 +106,3 @@ func create_tile_grid(width, height):
 			grid.add_child(newTile)
 			
 			allTiles[Vector2(x,y)] = newTile
-	print(unitManager.unitList.size())
-
-

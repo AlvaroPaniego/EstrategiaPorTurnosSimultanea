@@ -5,6 +5,7 @@ var x : int = 0
 var y : int = 0
 @onready var map : Node = get_node("/root/MainNode/Map")
 @onready var unitIcon: Sprite2D = $Sprite2D
+@onready var arrow: Node2D = $Arrow
 
 var path : Array[Vector2]
 @export var speed : = 10
@@ -14,6 +15,7 @@ var finalPos
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 1
+	arrow.z_index = 1
 
 func _process(delta: float) -> void:
 	if path.is_empty() and !canMove:
@@ -34,6 +36,13 @@ func move(delta):
 	if path.size() == 0:
 		position = finalPos
 		canMove = false
+		arrow.delete_arrow()
+
+func set_path(pathToFollow):
+	path = pathToFollow
+	#arrow.arrowPath = pathToFollow
+	#arrow.paint_arrow()
+	print(str(arrow.arrowPath) + " + " + str(path))
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
