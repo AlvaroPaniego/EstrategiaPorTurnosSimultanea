@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1n3vktm5c6ey"]
+[gd_scene load_steps=6 format=3 uid="uid://b1n3vktm5c6ey"]
 
 [ext_resource type="Script" path="res://Scripts/unit.gd" id="1_h7s8k"]
 [ext_resource type="Texture2D" uid="uid://cysbcr7gw4f5p" path="res://Sprites/Units/Green/infantry.png" id="1_wvvye"]
 [ext_resource type="PackedScene" uid="uid://cn8dmq0oduj1a" path="res://Scenes/arrow.tscn" id="3_ttb1n"]
+[ext_resource type="PackedScene" uid="uid://cvaf2i2drug7g" path="res://Scenes/unit_ui.tscn" id="4_ng5xh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymvlp"]
 size = Vector2(16, 16)
@@ -20,5 +21,11 @@ position = Vector2(1.58083, 16.2715)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wvvye")
+
+[node name="Control" parent="." instance=ExtResource("4_ng5xh")]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = -16.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://cvaf2i2drug7g"]
+
+[ext_resource type="Script" path="res://Scripts/unit_ui.gd" id="1_4ohn5"]
+[ext_resource type="Texture2D" uid="uid://cpkjg5e2g55dr" path="res://Sprites/Misc/tile_0180.png" id="2_b5wxd"]
+[ext_resource type="Texture2D" uid="uid://b27jfuk7aupub" path="res://Sprites/Misc/tile_0181.png" id="3_s5ux4"]
+[ext_resource type="Texture2D" uid="uid://b736jnqsgc21q" path="res://Sprites/Misc/tile_0182.png" id="4_nwppv"]
+[ext_resource type="Texture2D" uid="uid://c6wfqvcm4ilk0" path="res://Sprites/Misc/tile_0183.png" id="5_0ebyh"]
+[ext_resource type="Texture2D" uid="uid://b5sy2tkh201f2" path="res://Sprites/Misc/tile_0184.png" id="6_clohq"]
+[ext_resource type="Texture2D" uid="uid://bcbupj8rv8gyi" path="res://Sprites/Misc/tile_0185.png" id="7_0avcl"]
+[ext_resource type="Texture2D" uid="uid://cfxppcpr7hjci" path="res://Sprites/Misc/tile_0186.png" id="8_r0wl6"]
+[ext_resource type="Texture2D" uid="uid://uplsggiywrly" path="res://Sprites/Misc/tile_0187.png" id="9_ijxf6"]
+[ext_resource type="Texture2D" uid="uid://dod8jhj3od80b" path="res://Sprites/Misc/tile_0188.png" id="10_vucfq"]
+[ext_resource type="Texture2D" uid="uid://dp7pmmfubah4y" path="res://Sprites/Misc/tile_0189.png" id="11_fquq5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdjpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b5wxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s5ux4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nwppv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0ebyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_clohq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0avcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r0wl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ijxf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vucfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fquq5")
+}],
+"loop": true,
+"name": &"numbers",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -496.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ohn5")
+
+[node name="Health_points_tens" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 1)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_hdjpx")
+animation = &"numbers"
+
+[node name="Health_points_units" type="AnimatedSprite2D" parent="Health_points_tens"]
+position = Vector2(11, 0)
+sprite_frames = SubResource("SpriteFrames_hdjpx")
+animation = &"numbers"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 33.0
+offset_bottom = 6.0
+color = Color(0, 1, 0.0833333, 1)

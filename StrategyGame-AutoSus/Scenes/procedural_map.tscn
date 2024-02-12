@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c0uebgpe8y2jr" path="res://Sprites/TileMaps/tilemap.png" id="1_8w3ec"]
 [ext_resource type="Script" path="res://Scripts/procedural_map.gd" id="1_evkii"]
-[ext_resource type="Script" path="res://Scenes/camera_controller.gd" id="3_5hwt3"]
+[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_5hwt3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4vqyj"]
 frequency = 0.0517
